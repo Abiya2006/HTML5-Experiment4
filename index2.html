@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Technology Lab</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+        }
+
+        /* Main Container */
+        .container {
+            width: 600px;
+            max-width: 100%;
+            margin: 30px auto;
+            border: 2px solid #777;
+        }
+
+        /* Header */
+        .header {
+            height: 145px;
+            background: linear-gradient(to bottom, #2868b8, #3578c8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 55px;
+            background: rgba(0, 150, 255, 0.25);
+            border-radius: 50% 50% 0 0;
+        }
+
+        .header h1 {
+            color: white;
+            text-align: center;
+            padding-top: 40px;
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .flower {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            width: 55px;
+            height: 55px;
+            background-color: white;
+            border: 4px solid #ddd;
+            z-index: 2;
+        }
+
+        .flower img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .flower2 {
+            position: absolute;
+            top: 55px;
+            left: 55px;
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border: 3px solid #ddd;
+            z-index: 3;
+        }
+
+        .flower2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            height: 30px;
+            background-color: #aaa;
+        }
+
+        .navbar a {
+            flex: 1;
+            text-decoration: none;
+            color: black;
+            text-align: center;
+            padding: 7px;
+            font-size: 12px;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+            color: white;
+        }
+
+        .navbar a.active {
+            background-color: red;
+            color: white;
+        }
+
+        /* Content */
+        .content {
+            min-height: 330px;
+            background-color: pink;
+            padding-top: 0;
+        }
+
+        /* Side Menu */
+        .menu {
+            width: 125px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .menu-title {
+            background-color: #008000;
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .menu-item {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            background-color: #00aa00;
+            color: white;
+            font-size: 11px;
+        }
+
+        .menu-item:nth-child(even) {
+            background-color: #9cff20;
+            color: black;
+        }
+
+        .menu-item:hover {
+            background-color: yellow;
+        }
+
+        .menu-item img {
+            width: 25px;
+            height: 25px;
+            border-radius: 4px;
+        }
+
+        /* Login Area */
+        .login-area {
+            min-height: 220px;
+            background-image:
+                linear-gradient(rgba(0,0,0,0.35),
+                rgba(0,0,0,0.35)),
+                url("https://images.unsplash.com/photo-1497366754035-f200968a6e72");
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+        }
+
+        /* Forms */
+        .form-box {
+            width: 140px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 12px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+        }
+
+        .form-box h3 {
+            text-align: center;
+            margin: 0 0 12px;
+            font-size: 14px;
+        }
+
+        .form-box label {
+            display: block;
+            font-size: 9px;
+            margin-top: 5px;
+        }
+
+        .form-box input {
+            width: 100%;
+            padding: 6px;
+            margin-top: 3px;
+            border: none;
+            background-color: #ddd;
+            font-size: 8px;
+        }
+
+        .form-box input:focus {
+            border: 2px solid red;
+            background-color: green;
+            outline: none;
+        }
+
+        .form-box input:required {
+            border: 2px solid blue;
+            background-color: yellow;
+        }
+
+        .form-box input[type="email"]:invalid {
+            color: red;
+        }
+
+        .form-box input[type="email"]:valid {
+            color: blue;
+        }
+
+        .form-box button {
+            width: 100%;
+            margin-top: 12px;
+            padding: 7px;
+            border: none;
+            background-color: #0879f9;
+            color: white;
+            font-size: 9px;
+            cursor: pointer;
+        }
+
+        .form-box button:hover {
+            background-color: #005ac7;
+        }
+
+        /* Footer */
+        .footer {
+            min-height: 60px;
+            background-color: #ffe4b5;
+            padding: 10px;
+            font-size: 10px;
+            font-style: italic;
+        }
+
+        .footer p {
+            margin: 3px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 500px) {
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .login-area {
+                flex-wrap: wrap;
+            }
+
+            .form-box {
+                width: 45%;
+                min-width: 130px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <div class="flower">
+            <img src="https://images.pexels.com/photos/16997489/pexels-photo-16997489/free-photo-of-pink-tulips.jpeg?cs=tinysrgb&dpr=1&w=500"
+                 alt="Flower">
+        </div>
+
+        <div class="flower2">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRBsa5c2bVIPpKs5m1eXf3Y5mlLeqVhbTr1YfAXWYkvRgEZmbyakF7cGc&s=10"
+                 alt="Plant">
+        </div>
+
+        <h1>WEB TECHNOLOGY</h1>
+
+    </div>
+
+    <!-- NAVIGATION BAR -->
+    <div class="navbar">
+
+        <a href="#" class="active">Home</a>
+        <a href="#">About</a>
+        <a href="#">Profile</a>
+        <a href="#">Others</a>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- GREEN MENU -->
+        <div class="menu">
+
+            <div class="menu-title">
+                Features
+            </div>
+
+            <div class="menu-item">
+                <span>HTML</span>
+                <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png"
+                     alt="HTML">
+            </div>
+
+            <div class="menu-item">
+                <span>CSS</span>
+                <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png"
+                     alt="CSS">
+            </div>
+
+            <div class="menu-item">
+                <span>JavaScript</span>
+                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png"
+                     alt="JavaScript">
+            </div>
+
+            <div class="menu-item">
+                <span>Bootstrap</span>
+                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968672.png"
+                     alt="Bootstrap">
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- LOGIN / SIGNUP AREA -->
+    <div class="login-area">
+
+        <!-- SIGN IN -->
+        <div class="form-box">
+
+            <h3>Sign In</h3>
+
+            <label>Username</label>
+            <input type="text"
+                   placeholder="Enter Username / Email / Phone Number">
+
+            <label>Password</label>
+            <input type="password"
+                   placeholder="Enter Password">
+
+            <button onclick="signIn()">
+                Sign In
+            </button>
+
+        </div>
+
+        <!-- SIGN UP -->
+        <div class="form-box">
+
+            <h3>Sign Up</h3>
+
+            <label>Name</label>
+            <input type="text"
+                   placeholder="Enter Name"
+                   required>
+
+            <label>Email</label>
+            <input type="email"
+                   placeholder="Enter Email"
+                   required>
+
+            <label>Password</label>
+            <input type="password"
+                   placeholder="Enter Password"
+                   required>
+
+            <button onclick="signUp()">
+                Sign Up
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+
+        <p><b>Your address</b></p>
+
+        <p>
+            © 2026. (Register number) -
+            Web Technology Lab Batch 1.
+            All Rights Reserved.
+        </p>
+
+    </div>
+
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+
+    function signIn() {
+        alert("Sign In button clicked!");
+    }
+
+    function signUp() {
+        alert("Sign Up button clicked!");
+    }
+
+</script>
+
+</body>
+</html>
